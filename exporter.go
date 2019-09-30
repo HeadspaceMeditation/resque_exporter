@@ -163,6 +163,7 @@ func (e *exporter) collect(ch chan<- prometheus.Metric) error {
 
 	activeWorkers := 0
 	idleWorkers := 0
+        /* Commenting out until either we fix stale workers, or we make this multithreaded
 	for _, w := range workers {
 		_, err := redis.Get(fmt.Sprintf("%s:worker:%s", resqueNamespace, w)).Result()
 		if err == nil {
@@ -171,6 +172,7 @@ func (e *exporter) collect(ch chan<- prometheus.Metric) error {
 			idleWorkers++
 		}
 	}
+        */
 	e.activeWorkers.Set(float64(activeWorkers))
 	e.idleWorkers.Set(float64(idleWorkers))
 
